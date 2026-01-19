@@ -19,7 +19,7 @@ namespace ShoesProject
 						{
 							if (formProducts.ShowDialog() == DialogResult.Cancel)
 							{
-								continue;
+								continue;	//переход к форме логина
 							}
 							else
 							{

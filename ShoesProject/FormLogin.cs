@@ -15,9 +15,9 @@ namespace ShoesProject
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+            //null, пустая, только пробельные символы
             if (String.IsNullOrWhiteSpace(txtLogin.Text) || String.IsNullOrWhiteSpace(txtPassword.Text))
             {
-
                 MessageBox.Show("Введите логин и пароль",
                     "Ошибка",
                     MessageBoxButtons.OK,

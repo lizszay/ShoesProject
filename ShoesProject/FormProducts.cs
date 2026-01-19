@@ -17,12 +17,12 @@ namespace ShoesProject
             colPhoto.Name = "colPhoto";
             colPhoto.ImageLayout = DataGridViewImageCellLayout.Zoom;
             colPhoto.Width = 200;
-            colPhoto.FillWeight = 30;
+            colPhoto.FillWeight = 30;   //относиельная ширина в процентах
 
             var colInfo = new DataGridViewTextBoxColumn();
             colInfo.Name = "colInfo";
             colInfo.FillWeight = 60;
-            colInfo.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            colInfo.DefaultCellStyle.WrapMode = DataGridViewTriState.True;  //перенос строки
 
             var colDiscount = new DataGridViewTextBoxColumn();
             colDiscount.Name = "colDiscount";
@@ -48,7 +48,8 @@ namespace ShoesProject
             {
                 using (var db = new ShopDbContext())
                 {
-                    var products = db.Products
+                    var products = db.Products  
+                        //загрузка сущностей
                         .Include(i => i.Category)
                         .Include(i => i.Manufacturer)
                         .Include(i => i.Supplier)
@@ -56,7 +57,7 @@ namespace ShoesProject
                         .Include(i => i.ProductType)
                         .ToList();
 
-                    dgvProducts.SuspendLayout();
+                    dgvProducts.SuspendLayout();    //приостанавливает отрисовку
                     dgvProducts.Rows.Clear();
 
                     foreach (var product in products)
@@ -74,7 +75,9 @@ namespace ShoesProject
                         ApplyRowStyles(row, product);
                     }
 
+                    //возобновить отрисовку
                     dgvProducts.ResumeLayout();
+                    //высота строк по содержимому
                     dgvProducts.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
                 }
             }
