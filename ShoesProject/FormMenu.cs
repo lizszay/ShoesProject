@@ -14,9 +14,14 @@ namespace ShoesProject
         public User CurrentUser { get; private set; }
         public bool IsGuest { get; private set; }
 
-        public FormMenu()
+        public FormMenu(User user, bool guest)
         {
             InitializeComponent();
+
+            CurrentUser = user;
+            IsGuest = guest;
+
+            lblUserName.Text = IsGuest ? "Гость" : CurrentUser.FullName;
         }
     }
 }

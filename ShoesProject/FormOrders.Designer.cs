@@ -1,8 +1,6 @@
-﻿using System.Windows.Forms;
-
-namespace ShoesProject
+﻿namespace ShoesProject
 {
-    partial class FormMenu : Form
+    partial class FormOrders : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +28,20 @@ namespace ShoesProject
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             lblUserName = new Label();
             btnLogut = new Button();
             panelTop = new Panel();
+            dgvOrders = new DataGridView();
             panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOrders).BeginInit();
             SuspendLayout();
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
             lblUserName.Dock = DockStyle.Right;
-            lblUserName.Location = new Point(189, 0);
+            lblUserName.Location = new Point(769, 0);
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(45, 19);
             lblUserName.TabIndex = 6;
@@ -53,7 +54,7 @@ namespace ShoesProject
             btnLogut.Dock = DockStyle.Right;
             btnLogut.FlatAppearance.BorderSize = 0;
             btnLogut.FlatStyle = FlatStyle.Flat;
-            btnLogut.Location = new Point(234, 0);
+            btnLogut.Location = new Point(814, 0);
             btnLogut.Name = "btnLogut";
             btnLogut.Size = new Size(150, 30);
             btnLogut.TabIndex = 5;
@@ -62,30 +63,60 @@ namespace ShoesProject
             // 
             // panelTop
             // 
-            panelTop.BackColor = Color.White;
             panelTop.Controls.Add(lblUserName);
             panelTop.Controls.Add(btnLogut);
             panelTop.Dock = DockStyle.Top;
-            panelTop.Location = new Point(0, 0);
+            panelTop.Location = new Point(10, 10);
             panelTop.Name = "panelTop";
             panelTop.Padding = new Padding(0, 0, 0, 10);
-            panelTop.Size = new Size(384, 40);
+            panelTop.Size = new Size(964, 40);
             panelTop.TabIndex = 1;
             // 
-            // FormMenu
+            // dgvOrders
+            // 
+            dgvOrders.AllowUserToAddRows = false;
+            dgvOrders.AllowUserToDeleteRows = false;
+            dgvOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvOrders.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvOrders.BackgroundColor = Color.White;
+            dgvOrders.BorderStyle = BorderStyle.None;
+            dgvOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOrders.ColumnHeadersVisible = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvOrders.DefaultCellStyle = dataGridViewCellStyle1;
+            dgvOrders.Dock = DockStyle.Fill;
+            dgvOrders.Location = new Point(10, 50);
+            dgvOrders.MultiSelect = false;
+            dgvOrders.Name = "dgvOrders";
+            dgvOrders.ReadOnly = true;
+            dgvOrders.RowHeadersVisible = false;
+            dgvOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvOrders.Size = new Size(964, 601);
+            dgvOrders.TabIndex = 2;
+            // 
+            // FormOrders
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(384, 361);
+            ClientSize = new Size(984, 661);
+            Controls.Add(dgvOrders);
             Controls.Add(panelTop);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(4);
-            Name = "FormMenu";
+            Name = "FormOrders";
+            Padding = new Padding(10);
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Меню";
+            Text = "Список заказов";
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOrders).EndInit();
             ResumeLayout(false);
         }
 
@@ -94,5 +125,6 @@ namespace ShoesProject
         private Label lblUserName;
         private Button btnLogut;
         private Panel panelTop;
+        private DataGridView dgvOrders;
     }
 }
