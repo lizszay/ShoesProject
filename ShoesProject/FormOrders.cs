@@ -1,4 +1,5 @@
-﻿/*using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using ShoesProject.Models;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace ShoesProject
             colInfo.FillWeight = 75;
             colInfo.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            *//**//*var colDeliveryDate = new DataGridViewTextBoxColumn();
+            var colDeliveryDate = new DataGridViewTextBoxColumn();
             colDeliveryDate.Name = "colDeliveryDate";
             colDeliveryDate.FillWeight = 25;
             colDeliveryDate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -45,16 +46,39 @@ namespace ShoesProject
 
         private void LoadOrders()
         {
-            try 
+            try
             {
-                using(var db)
+                using (var db = new ShopDbContext())
+                {
+                    var orders = db.Orders
+                        .Include(i => i.IdStatuses)
+                        .Include(i => i.DeliveryPoint)
+                        .Include(i => i.OrderDate)
+                        .Include(i => i.DeliveryDate)
+                        .ToList();
+
+                    dgvOrders.SuspendLayout();
+                    dgvOrders.Rows.Clear();
+
+                    foreach (var order in orders)
+                    {
+                        int rowIndex = dgvOrders.Rows.Add();
+                        var row = dgvOrders.Rows[rowIndex];
+
+                        row.Cells["colInfo"].Value = FormatOrderInfo(order);
+                    }
+                }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(
+                    $"Ошибка загрузки: {ex.Message}",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
     }
 }
-*/

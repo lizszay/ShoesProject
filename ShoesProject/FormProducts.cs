@@ -139,7 +139,7 @@ namespace ShoesProject
                 $"Произвводитель: {product.Manufacturer.ManufacturerName}" + Environment.NewLine +
                 $"Поставщик: {product.Supplier.SupplierName}" + Environment.NewLine +
                 $"Цена: {priceText}" + Environment.NewLine +
-                $"Удиница измерения: {product.Measure.MeasureName}" + Environment.NewLine +
+                $"Единица измерения: {product.Measure.MeasureName}" + Environment.NewLine +
                 $"Количество на складе: {product.CointInStock}";
         }
 
