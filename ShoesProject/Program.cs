@@ -13,19 +13,21 @@ namespace ShoesProject
 				{
 					if (formLogin.ShowDialog() == DialogResult.OK)
 					{
-						using (var formProducts = new FormProducts(
-							formLogin.CurrentUser,
-							formLogin.IsGuest))
-						{
-							if (formProducts.ShowDialog() == DialogResult.Cancel)
-							{
-								continue;	//переход к форме логина
-							}
-							else
-							{
-								exitProgram = true;
-							}
-						}
+                        // 2. Главное меню (после успешного входа)
+                        using (var formMenu = new FormMenu(
+                            formLogin.CurrentUser,
+                            formLogin.IsGuest))
+                        {
+                            // Ждем пока пользователь выберет что-то в меню
+                            if (formMenu.ShowDialog() == DialogResult.Cancel)
+                            {
+                                continue; // Вернуться к форме логина
+                            }
+                            else
+                            {
+                                exitProgram = true; // Выйти из программы
+                            }
+                        }
 					}
 					else
 					{
