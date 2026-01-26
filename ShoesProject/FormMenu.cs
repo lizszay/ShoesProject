@@ -31,14 +31,14 @@ namespace ShoesProject
 
         private void BtnProducts_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK; // Устанавливаем результат
+            this.DialogResult = DialogResult.Yes; // Устанавливаем результат
             this.Close(); // Закрываем меню
                           // В Program.cs откроется FormProducts
         }
 
         private void BtnOrders_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Yes; // Другой результат для заказов
+            this.DialogResult = DialogResult.No; // Другой результат для заказов
             this.Close();
         }
 
@@ -46,11 +46,6 @@ namespace ShoesProject
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
         }
     }
 }

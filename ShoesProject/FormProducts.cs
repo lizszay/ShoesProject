@@ -159,14 +159,9 @@ namespace ShoesProject
 			this.Close();
 		}
 
-		protected override void OnFormClosing(FormClosingEventArgs e)
-		{
-			base.OnFormClosing(e);
-		}
-
 		private void BtnBack_Click(object sender, EventArgs e)
 		{
-			this.DialogResult = DialogResult.Retry; // Специальный результат для "Назад"
+			this.DialogResult = DialogResult.Abort; // Специальный результат для "Назад"
 			this.Close();
 		}
 	}

@@ -65,7 +65,7 @@ namespace ShoesProject
                             .ThenInclude(po => po.Product) // опционально, если нужно
                         .Include(i => i.Status)
                         .Include(i => i.DeliveryPoint)
-                        .OrderBy(o => o.OrderDate) // Сортируем по дате заказа
+                        .OrderByDescending(o => o.OrderDate) // Сортируем по дате заказа
                         .ToList();
 
                     dgvOrders.SuspendLayout();
@@ -125,14 +125,9 @@ namespace ShoesProject
             this.Close();
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-        }
-
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Retry; // Специальный результат для "Назад"
+            this.DialogResult = DialogResult.Abort; // Специальный результат для "Назад"
             this.Close();
         }
     }
