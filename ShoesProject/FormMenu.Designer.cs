@@ -30,10 +30,13 @@ namespace ShoesProject
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             lblUserName = new Label();
             btnLogut = new Button();
             panelTop = new Panel();
+            dgvButtons = new DataGridView();
             panelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvButtons).BeginInit();
             SuspendLayout();
             // 
             // lblUserName
@@ -72,12 +75,41 @@ namespace ShoesProject
             panelTop.Size = new Size(384, 40);
             panelTop.TabIndex = 1;
             // 
+            // dgvButtons
+            // 
+            dgvButtons.AllowUserToAddRows = false;
+            dgvButtons.AllowUserToDeleteRows = false;
+            dgvButtons.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvButtons.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvButtons.BackgroundColor = Color.White;
+            dgvButtons.BorderStyle = BorderStyle.None;
+            dgvButtons.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvButtons.ColumnHeadersVisible = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvButtons.DefaultCellStyle = dataGridViewCellStyle1;
+            dgvButtons.Dock = DockStyle.Fill;
+            dgvButtons.Location = new Point(0, 40);
+            dgvButtons.MultiSelect = false;
+            dgvButtons.Name = "dgvButtons";
+            dgvButtons.ReadOnly = true;
+            dgvButtons.RowHeadersVisible = false;
+            dgvButtons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvButtons.Size = new Size(384, 321);
+            dgvButtons.TabIndex = 3;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(384, 361);
+            Controls.Add(dgvButtons);
             Controls.Add(panelTop);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(4);
@@ -86,6 +118,7 @@ namespace ShoesProject
             Text = "Меню";
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvButtons).EndInit();
             ResumeLayout(false);
         }
 
@@ -94,5 +127,6 @@ namespace ShoesProject
         private Label lblUserName;
         private Button btnLogut;
         private Panel panelTop;
+        private DataGridView dgvButtons;
     }
 }

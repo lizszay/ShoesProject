@@ -51,9 +51,10 @@ namespace ShoesProject
                 using (var db = new ShopDbContext())
                 {
                     var orders = db.Orders
-                        .Include(i => i.IdStatuses)
+                        .Where(w => w.IdUser == CurrentUser.Id) //только заказы текущего пользоваетля
+                        .Include(i => i.ProductsOrders)
+                        .Include(i => i.Status)
                         .Include(i => i.DeliveryPoint)
-                        .Include(i => i.OrderDate)
                         .Include(i => i.DeliveryDate)
                         .ToList();
 
@@ -79,6 +80,38 @@ namespace ShoesProject
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private string FormatOrderInfo(Order order)
+        {
+            string items = "";
+
+            foreach(var i in order.ProductsOrders)
+            {
+                items += $"{i.Product.Art}, {i.Quantity}, ";
+            }
+
+            // Убираем последнюю запятую и пробел
+            if (items.Length > 2)
+            {
+                items = items.Remove(items.Length - 2);
+            }
+
+            return $"Артикул заказа: {items}" +
+                $"Статус заказа: {order.Status.StatusName} " +
+                $"Адрес пункта выдачи: {order.DeliveryPoint.DeliveryAddress}" +
+                $"Дата заказа: {order.OrderDate}";
+        }
+
+        private void BtnLogut_Click( object sender, EventArgs e )
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
         }
     }
 }
