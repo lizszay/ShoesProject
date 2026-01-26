@@ -45,7 +45,7 @@ namespace ShoesProject
             // 
             lblUserName.AutoSize = true;
             lblUserName.Dock = DockStyle.Right;
-            lblUserName.Location = new Point(189, 0);
+            lblUserName.Location = new Point(352, 0);
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(45, 19);
             lblUserName.TabIndex = 6;
@@ -58,7 +58,7 @@ namespace ShoesProject
             btnLogut.Dock = DockStyle.Right;
             btnLogut.FlatAppearance.BorderSize = 0;
             btnLogut.FlatStyle = FlatStyle.Flat;
-            btnLogut.Location = new Point(234, 0);
+            btnLogut.Location = new Point(397, 0);
             btnLogut.Name = "btnLogut";
             btnLogut.Size = new Size(150, 30);
             btnLogut.TabIndex = 5;
@@ -75,7 +75,7 @@ namespace ShoesProject
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Padding = new Padding(0, 0, 0, 10);
-            panelTop.Size = new Size(384, 40);
+            panelTop.Size = new Size(547, 40);
             panelTop.TabIndex = 1;
             // 
             // dgvButtons
@@ -103,27 +103,31 @@ namespace ShoesProject
             dgvButtons.ReadOnly = true;
             dgvButtons.RowHeadersVisible = false;
             dgvButtons.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvButtons.Size = new Size(384, 321);
+            dgvButtons.Size = new Size(547, 321);
             dgvButtons.TabIndex = 3;
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(117, 141);
+            btnProducts.Anchor = AnchorStyles.None;
+            btnProducts.BackColor = Color.Chartreuse;
+            btnProducts.Location = new Point(198, 141);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(150, 30);
             btnProducts.TabIndex = 4;
             btnProducts.Text = "Товары";
-            btnProducts.UseVisualStyleBackColor = true;
+            btnProducts.UseVisualStyleBackColor = false;
             btnProducts.Click += BtnProducts_Click;
             // 
             // btnOrders
             // 
-            btnOrders.Location = new Point(117, 189);
+            btnOrders.Anchor = AnchorStyles.None;
+            btnOrders.BackColor = Color.Chartreuse;
+            btnOrders.Location = new Point(198, 189);
             btnOrders.Name = "btnOrders";
             btnOrders.Size = new Size(150, 30);
             btnOrders.TabIndex = 5;
             btnOrders.Text = "Заказы";
-            btnOrders.UseVisualStyleBackColor = true;
+            btnOrders.UseVisualStyleBackColor = false;
             btnOrders.Click += BtnOrders_Click;
             // 
             // FormMenu
@@ -131,7 +135,7 @@ namespace ShoesProject
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(384, 361);
+            ClientSize = new Size(547, 361);
             Controls.Add(btnOrders);
             Controls.Add(btnProducts);
             Controls.Add(dgvButtons);

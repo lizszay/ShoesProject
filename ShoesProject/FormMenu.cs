@@ -22,6 +22,11 @@ namespace ShoesProject
             IsGuest = guest;
 
             lblUserName.Text = IsGuest ? "Гость" : CurrentUser.FullName;
+
+            if (IsGuest )
+            {
+                btnOrders.Visible = false;
+            }
         }
 
         private void BtnProducts_Click(object sender, EventArgs e)
