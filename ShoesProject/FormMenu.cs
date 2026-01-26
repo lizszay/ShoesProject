@@ -23,5 +23,15 @@ namespace ShoesProject
 
             lblUserName.Text = IsGuest ? "Гость" : CurrentUser.FullName;
         }
+
+        private void BtnProducts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnOrders_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

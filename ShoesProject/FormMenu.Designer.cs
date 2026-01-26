@@ -35,6 +35,8 @@ namespace ShoesProject
             btnLogut = new Button();
             panelTop = new Panel();
             dgvButtons = new DataGridView();
+            btnProducts = new Button();
+            btnOrders = new Button();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvButtons).BeginInit();
             SuspendLayout();
@@ -103,12 +105,34 @@ namespace ShoesProject
             dgvButtons.Size = new Size(384, 321);
             dgvButtons.TabIndex = 3;
             // 
+            // btnProducts
+            // 
+            btnProducts.Location = new Point(117, 141);
+            btnProducts.Name = "btnProducts";
+            btnProducts.Size = new Size(150, 30);
+            btnProducts.TabIndex = 4;
+            btnProducts.Text = "Товары";
+            btnProducts.UseVisualStyleBackColor = true;
+            btnProducts.Click += BtnProducts_Click;
+            // 
+            // btnOrders
+            // 
+            btnOrders.Location = new Point(117, 189);
+            btnOrders.Name = "btnOrders";
+            btnOrders.Size = new Size(150, 30);
+            btnOrders.TabIndex = 5;
+            btnOrders.Text = "Заказы";
+            btnOrders.UseVisualStyleBackColor = true;
+            btnOrders.Click += BtnOrders_Click;
+            // 
             // FormMenu
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(384, 361);
+            Controls.Add(btnOrders);
+            Controls.Add(btnProducts);
             Controls.Add(dgvButtons);
             Controls.Add(panelTop);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -128,5 +152,7 @@ namespace ShoesProject
         private Button btnLogut;
         private Panel panelTop;
         private DataGridView dgvButtons;
+        private Button btnProducts;
+        private Button btnOrders;
     }
 }
