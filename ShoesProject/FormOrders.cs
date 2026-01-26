@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -21,7 +22,7 @@ namespace ShoesProject
         {
             InitializeComponent();
 
-            var colInfo = new DataGridViewImageColumn();
+            var colInfo = new DataGridViewTextBoxColumn();
             colInfo.Name = "colInfo";
             colInfo.FillWeight = 75;
             colInfo.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -50,12 +51,21 @@ namespace ShoesProject
             {
                 using (var db = new ShopDbContext())
                 {
-                    var orders = db.Orders
+                    /*var orders = db.Orders
                         .Where(w => w.IdUser == CurrentUser.Id) //только заказы текущего пользоваетля
                         .Include(i => i.ProductsOrders)
                         .Include(i => i.Status)
                         .Include(i => i.DeliveryPoint)
                         .Include(i => i.DeliveryDate)
+                        .ToList();*/
+
+                    var orders = db.Orders
+                        .Where(w => w.IdUser == CurrentUser.Id)
+                        .Include(i => i.ProductsOrders)
+                            .ThenInclude(po => po.Product) // опционально, если нужно
+                        .Include(i => i.Status)
+                        .Include(i => i.DeliveryPoint)
+                        .OrderBy(o => o.OrderDate) // Сортируем по дате заказа
                         .ToList();
 
                     dgvOrders.SuspendLayout();
@@ -67,7 +77,13 @@ namespace ShoesProject
                         var row = dgvOrders.Rows[rowIndex];
 
                         row.Cells["colInfo"].Value = FormatOrderInfo(order);
+                        row.Cells["colDeliveryDate"].Value = order.DeliveryDate;
                     }
+
+                    //возобновить отрисовку
+                    dgvOrders.ResumeLayout();
+                    //высота строк по содержимому
+                    dgvOrders.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
                 }
 
             }
@@ -86,7 +102,7 @@ namespace ShoesProject
         {
             string items = "";
 
-            foreach(var i in order.ProductsOrders)
+            foreach (var i in order.ProductsOrders)
             {
                 items += $"{i.Product.Art}, {i.Quantity}, ";
             }
@@ -97,13 +113,13 @@ namespace ShoesProject
                 items = items.Remove(items.Length - 2);
             }
 
-            return $"Артикул заказа: {items}" +
-                $"Статус заказа: {order.Status.StatusName} " +
-                $"Адрес пункта выдачи: {order.DeliveryPoint.DeliveryAddress}" +
+            return $"Артикул заказа: {items}\n" +
+                $"Статус заказа: {order.Status.StatusName}\n" +
+                $"Адрес пункта выдачи: {order.DeliveryPoint.DeliveryAddress}\n" +
                 $"Дата заказа: {order.OrderDate}";
         }
 
-        private void BtnLogut_Click( object sender, EventArgs e )
+        private void BtnLogut_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
@@ -112,6 +128,12 @@ namespace ShoesProject
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Retry; // Специальный результат для "Назад"
+            this.Close();
         }
     }
 }

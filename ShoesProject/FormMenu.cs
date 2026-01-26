@@ -23,7 +23,7 @@ namespace ShoesProject
 
             lblUserName.Text = IsGuest ? "Гость" : CurrentUser.FullName;
 
-            if (IsGuest )
+            if (IsGuest)
             {
                 btnOrders.Visible = false;
             }
@@ -31,12 +31,15 @@ namespace ShoesProject
 
         private void BtnProducts_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.OK; // Устанавливаем результат
+            this.Close(); // Закрываем меню
+                          // В Program.cs откроется FormProducts
         }
 
         private void BtnOrders_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Yes; // Другой результат для заказов
+            this.Close();
         }
 
         private void BtnLogut_Click(object sender, EventArgs e)

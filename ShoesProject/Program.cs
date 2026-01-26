@@ -11,15 +11,50 @@ namespace ShoesProject
 			{
 				using (var formLogin = new FormLogin())
 				{
-					if (formLogin.ShowDialog() == DialogResult.OK)
-					{
-                        // 2. Главное меню (после успешного входа)
+                    if (formLogin.ShowDialog() == DialogResult.OK)
+                    {
+                        // 2. Главное меню
                         using (var formMenu = new FormMenu(
                             formLogin.CurrentUser,
                             formLogin.IsGuest))
                         {
-                            // Ждем пока пользователь выберет что-то в меню
-                            if (formMenu.ShowDialog() == DialogResult.Cancel)
+                            var menuResult = formMenu.ShowDialog();
+
+                            if (menuResult == DialogResult.OK)
+                            {
+                                // Пользователь выбрал "Товары"
+                                using (var formProducts = new FormProducts(
+                                    formLogin.CurrentUser,
+                                    formLogin.IsGuest))
+                                {
+                                    if (formProducts.ShowDialog() == DialogResult.Cancel)
+                                    {
+                                        continue; // Вернуться к меню
+                                    }
+                                    else
+                                    {
+                                        exitProgram = true; // Выйти из программы
+                                    }
+                                }
+                            }
+                            else if (menuResult == DialogResult.Yes)
+                            {
+                                // Пользователь выбрал "Мои заказы"
+                                using (var formOrders = new FormOrders(
+                                    formLogin.CurrentUser,
+                                    formLogin.IsGuest))
+                                {
+                                    if (formOrders.ShowDialog() == DialogResult.Cancel)
+                                    {
+                                        continue; // Вернуться к меню
+                                    }
+                                    else
+                                    {
+                                        exitProgram = true; // Выйти из программы
+                                    }
+                                }
+                            }
+                            else if (menuResult == DialogResult.Cancel)
                             {
                                 continue; // Вернуться к форме логина
                             }
@@ -28,12 +63,12 @@ namespace ShoesProject
                                 exitProgram = true; // Выйти из программы
                             }
                         }
-					}
-					else
-					{
-						exitProgram = true;
-					}
-				}
+                    }
+                    else
+                    {
+                        exitProgram = true; // Нажали Отмена в форме логина
+                    }
+                }
 			}
 		}
 	}

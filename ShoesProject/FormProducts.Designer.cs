@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panelTop = new Panel();
+            btnBack = new Button();
             lblUserName = new Label();
             btnLogut = new Button();
             dgvProducts = new DataGridView();
@@ -39,6 +40,7 @@
             // 
             // panelTop
             // 
+            panelTop.Controls.Add(btnBack);
             panelTop.Controls.Add(lblUserName);
             panelTop.Controls.Add(btnLogut);
             panelTop.Dock = DockStyle.Top;
@@ -47,6 +49,20 @@
             panelTop.Padding = new Padding(0, 0, 0, 10);
             panelTop.Size = new Size(964, 40);
             panelTop.TabIndex = 0;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.MediumSpringGreen;
+            btnBack.Dock = DockStyle.Left;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Location = new Point(0, 0);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(150, 30);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Назад";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += BtnBack_Click;
             // 
             // lblUserName
             // 
@@ -127,5 +143,6 @@
         private DataGridView dgvProducts;
         private Label lblUserName;
         private Button btnLogut;
+        private Button btnBack;
     }
 }
