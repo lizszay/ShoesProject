@@ -51,18 +51,12 @@ namespace ShoesProject
             {
                 using (var db = new ShopDbContext())
                 {
-                    /*var orders = db.Orders
-                        .Where(w => w.IdUser == CurrentUser.Id) //только заказы текущего пользоваетля
-                        .Include(i => i.ProductsOrders)
-                        .Include(i => i.Status)
-                        .Include(i => i.DeliveryPoint)
-                        .Include(i => i.DeliveryDate)
-                        .ToList();*/
 
                     var orders = db.Orders
                         .Where(w => w.IdUser == CurrentUser.Id)
                         .Include(i => i.ProductsOrders)
-                            .ThenInclude(po => po.Product) // опционально, если нужно
+                        //подгрузка влож.нав.св-в
+                            .ThenInclude(t => t.Product) 
                         .Include(i => i.Status)
                         .Include(i => i.DeliveryPoint)
                         .OrderByDescending(o => o.OrderDate) // Сортируем по дате заказа
@@ -106,7 +100,6 @@ namespace ShoesProject
             {
                 foreach (var i in order.ProductsOrders)
                 {
-                    // 2. Проверяем, что товар не null
                     if (i.Product != null)
                     {
                         items += $"{i.Product.Art}, {i.Quantity}, ";
@@ -116,7 +109,6 @@ namespace ShoesProject
                         items += $"Товар не найден, {i.Quantity}, ";
                     }
                 }
-                // Убираем последнюю запятую и пробел
                 if (items.Length > 2)
                 {
                     items = items.Remove(items.Length - 2);
@@ -124,7 +116,6 @@ namespace ShoesProject
             }
             else
             {
-                // 3. Если товаров нет
                 items = "Товары не указаны";
             }
 
@@ -149,18 +140,6 @@ namespace ShoesProject
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            // Если пользователь закрыл форму крестиком, считаем это как "Выход"
-            if (this.DialogResult == DialogResult.None)
-            {
-                // Можно спросить пользователя
-                //var result = MessageBox.Show("Выйти к форме логина?", "Подтверждение", 
-                //    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                //if (result == DialogResult.Yes)
-                this.DialogResult = DialogResult.Cancel; // Выход к логину
-                                                         //else
-                                                         //    e.Cancel = true; // Отменить закрытие
-            }
             base.OnFormClosing(e);
         }
     }

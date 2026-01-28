@@ -1,11 +1,4 @@
 ﻿using ShoesProject.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
 namespace ShoesProject
 {
@@ -33,7 +26,6 @@ namespace ShoesProject
         {
             this.DialogResult = DialogResult.Yes; // Устанавливаем результат
             this.Close(); // Закрываем меню
-                          // В Program.cs откроется FormProducts
         }
 
         private void BtnOrders_Click(object sender, EventArgs e)

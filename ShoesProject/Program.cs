@@ -13,12 +13,11 @@ namespace ShoesProject
                 {
                     if (formLogin.ShowDialog() == DialogResult.OK)
                     {
-                        // Цикл для главного меню (чтобы можно было возвращаться из товаров/заказов)
                         bool stayInMenu = true;
 
                         while (stayInMenu && !exitProgram)
                         {
-                            stayInMenu = false; // сбрасываем флаг
+                            stayInMenu = false; 
 
                             using (var formMenu = new FormMenu(
                                 formLogin.CurrentUser,
@@ -26,7 +25,7 @@ namespace ShoesProject
                             {
                                 var menuResult = formMenu.ShowDialog();
 
-                                if (menuResult == DialogResult.Yes) // Товары
+                                if (menuResult == DialogResult.Yes) //продукты
                                 {
                                     using (var formProducts = new FormProducts(
                                         formLogin.CurrentUser,
@@ -36,7 +35,6 @@ namespace ShoesProject
 
                                         if (productsResult == DialogResult.Abort)
                                         {
-                                            // Нажали "Назад" - остаемся в меню
                                             stayInMenu = true;
                                         }
                                         else if (productsResult == DialogResult.Cancel)
@@ -46,7 +44,7 @@ namespace ShoesProject
                                         }
                                         else
                                         {
-                                            exitProgram = true; // Выйти из программы
+                                            exitProgram = true; 
                                         }
                                     }
                                 }
@@ -60,7 +58,6 @@ namespace ShoesProject
 
                                         if (ordersResult == DialogResult.Abort)
                                         {
-                                            // Нажали "Назад" - остаемся в меню
                                             stayInMenu = true;
                                         }
                                         else if (ordersResult == DialogResult.Cancel)
@@ -81,7 +78,7 @@ namespace ShoesProject
                                 }
                                 else
                                 {
-                                    exitProgram = true; // Выйти из программы
+                                    exitProgram = true; 
                                 }
                             }
                         }
