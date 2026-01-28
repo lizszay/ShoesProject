@@ -102,16 +102,32 @@ namespace ShoesProject
         {
             string items = "";
 
-            foreach (var i in order.ProductsOrders)
+            if (order.ProductsOrders != null && order.ProductsOrders.Any())
             {
-                items += $"{i.Product.Art}, {i.Quantity}, ";
+                foreach (var i in order.ProductsOrders)
+                {
+                    // 2. Проверяем, что товар не null
+                    if (i.Product != null)
+                    {
+                        items += $"{i.Product.Art}, {i.Quantity}, ";
+                    }
+                    else
+                    {
+                        items += $"Товар не найден, {i.Quantity}, ";
+                    }
+                }
+                // Убираем последнюю запятую и пробел
+                if (items.Length > 2)
+                {
+                    items = items.Remove(items.Length - 2);
+                }
+            }
+            else
+            {
+                // 3. Если товаров нет
+                items = "Товары не указаны";
             }
 
-            // Убираем последнюю запятую и пробел
-            if (items.Length > 2)
-            {
-                items = items.Remove(items.Length - 2);
-            }
 
             return $"Артикул заказа: {items}\n" +
                 $"Статус заказа: {order.Status.StatusName}\n" +
