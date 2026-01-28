@@ -164,5 +164,15 @@ namespace ShoesProject
 			this.DialogResult = DialogResult.Abort; // Специальный результат для "Назад"
 			this.Close();
 		}
-	}
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // Если форма закрывается крестиком, устанавливаем DialogResult
+            if (this.DialogResult == DialogResult.None)
+            {
+                this.DialogResult = DialogResult.Cancel; // По умолчанию считаем что "Выход"
+            }
+            base.OnFormClosing(e);
+        }
+    }
 }

@@ -146,5 +146,22 @@ namespace ShoesProject
             this.DialogResult = DialogResult.Abort; // Специальный результат для "Назад"
             this.Close();
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // Если пользователь закрыл форму крестиком, считаем это как "Выход"
+            if (this.DialogResult == DialogResult.None)
+            {
+                // Можно спросить пользователя
+                //var result = MessageBox.Show("Выйти к форме логина?", "Подтверждение", 
+                //    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                //if (result == DialogResult.Yes)
+                this.DialogResult = DialogResult.Cancel; // Выход к логину
+                                                         //else
+                                                         //    e.Cancel = true; // Отменить закрытие
+            }
+            base.OnFormClosing(e);
+        }
     }
 }
