@@ -62,8 +62,8 @@ namespace ShoesProject
 
 					foreach (var product in products)
 					{
-						int rowIndex = dgvProducts.Rows.Add();
-						var row = dgvProducts.Rows[rowIndex];
+						int rowIndex = dgvProducts.Rows.Add();  //добавление строки
+                        var row = dgvProducts.Rows[rowIndex];	//указываем какая текущая строка
 
 						row.Cells["colPhoto"].Value = LoadProductImage(product.PhotoUrl);
 

@@ -55,7 +55,7 @@ namespace ShoesProject
                     var orders = db.Orders
                         .Where(w => w.IdUser == CurrentUser.Id)
                         .Include(i => i.ProductsOrders)
-                        //подгрузка влож.нав.св-в
+                            //подгрузка влож.нав.св-в
                             .ThenInclude(t => t.Product) 
                         .Include(i => i.Status)
                         .Include(i => i.DeliveryPoint)
@@ -67,7 +67,7 @@ namespace ShoesProject
 
                     foreach (var order in orders)
                     {
-                        int rowIndex = dgvOrders.Rows.Add();
+                        int rowIndex = dgvOrders.Rows.Add();    
                         var row = dgvOrders.Rows[rowIndex];
 
                         row.Cells["colInfo"].Value = FormatOrderInfo(order);
@@ -76,8 +76,6 @@ namespace ShoesProject
 
                     //возобновить отрисовку
                     dgvOrders.ResumeLayout();
-                    //высота строк по содержимому
-                    dgvOrders.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
                 }
 
             }
@@ -96,7 +94,7 @@ namespace ShoesProject
         {
             string items = "";
 
-            if (order.ProductsOrders != null && order.ProductsOrders.Any())
+            if (order.ProductsOrders != null)
             {
                 foreach (var i in order.ProductsOrders)
                 {

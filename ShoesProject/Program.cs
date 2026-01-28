@@ -39,12 +39,12 @@ namespace ShoesProject
                                         }
                                         else if (productsResult == DialogResult.Cancel)
                                         {
-                                            // Нажали "Выход" - возвращаемся к логину
-                                            // stayInMenu останется false - выйдем из цикла меню
+                                            // Нажали "Выход" - возвращение к логину
+                                            // stayInMenu останется false - выход из цикла меню
                                         }
                                         else
                                         {
-                                            exitProgram = true; 
+                                            exitProgram = true;  // Выйти из программы
                                         }
                                     }
                                 }
@@ -62,19 +62,17 @@ namespace ShoesProject
                                         }
                                         else if (ordersResult == DialogResult.Cancel)
                                         {
-                                            // Нажали "Выход" - возвращаемся к логину
-                                            // stayInMenu останется false - выйдем из цикла меню
+
                                         }
                                         else
                                         {
-                                            exitProgram = true; // Выйти из программы
+                                            exitProgram = true;
                                         }
                                     }
                                 }
                                 else if (menuResult == DialogResult.Cancel)
                                 {
-                                    // Нажали "Выход" в меню - возвращаемся к логину
-                                    // stayInMenu останется false - выйдем из цикла меню
+
                                 }
                                 else
                                 {
